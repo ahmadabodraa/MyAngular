@@ -1,0 +1,12 @@
+<div class="profile-card">
+  <img [src]="currentUser()?.avatar" alt="picture" class="profile-image">
+  <h2>{{currentUser()?.first_name}} {{currentUser()?.last_name}}</h2>
+  <div class="button-container">
+    <button class="follow-button" [routerLink]="[currentUser()?.id]" routerLinkActive="router-link-active">
+      details
+    </button>
+  </div>
+</div>
+
+
+   

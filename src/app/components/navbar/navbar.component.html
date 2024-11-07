@@ -1,0 +1,8 @@
+<mat-toolbar>
+    <div class="toolbar">
+        <span class="header">Angular Project</span>
+        <a class="users-ah" routerLink="/users" routerLinkActive="active">Users</a>
+    </div>
+    <input class="search" type="text" placeholder="Search" *ngIf="shouldShowSearch" type="number"
+        (input)="search($event)">
+</mat-toolbar>

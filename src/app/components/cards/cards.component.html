@@ -1,0 +1,26 @@
+<ng-container *ngIf="(loading$|async) as loading">
+  <ng-container *ngIf="(['loaded_done', 'loaded_failed'].includes(loading)) && !(searchedUser$|async) ;else loader">
+    <ng-container *ngIf="(usersData$ | async) as usersData">
+      <div class="wrapper">
+        <app-user-card *ngFor="let user of usersData.data"
+          [currentUser]="user"></app-user-card>
+      </div>
+      <mat-paginator [length]="usersData.total" [pageSize]="usersData.per_page" [pageIndex]="pageIndex"
+        (page)="paginatorChanged($event)" [showFirstLastButtons]="true">
+      </mat-paginator>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf=" ((loading$|async)=='loaded_done'|| 'loaded_failed') && (searchedUser$|async) as user">
+  <app-user-card [currentUser]="user" class="container"></app-user-card>
+</ng-container>
+
+<ng-template #loader>
+  <div class="spinner-container" *ngIf="(loading$|async)=='loading'">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="(loading$|async)=='NOT_LOADED'" class="not-found-img">
+    <img src="assets/images/not-found-error-alert-svgrepo-com.png" />
+  </div>
+</ng-template>
